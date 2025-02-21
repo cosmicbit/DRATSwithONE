@@ -119,23 +119,6 @@ class FixedTimeEnv(gym.Env):
                                     filename="data_from_ttl.csv")
         return reward
 
-    # def get_camera_data(self, camera_pos):
-    #     moving_count = 0  # Vehicles in motion
-    #     halting_count = 0  # Stopped vehicles
-    #
-    #     for vehicle_id in traci.vehicle.getIDList():
-    #         x, y = traci.vehicle.getPosition(vehicle_id)  # Get vehicle position
-    #         speed = traci.vehicle.getSpeed(vehicle_id)
-    #         cam_x, cam_y = camera_pos  # Camera coordinates
-    #
-    #         # Check if vehicle is within 100m of the camera
-    #         if abs(x - cam_x) <= self.detection_range and abs(y - cam_y) <= self.detection_range:
-    #             if speed == 0:
-    #                 halting_count += 1
-    #             else:
-    #                 moving_count += 1
-    #
-    #     return moving_count, halting_count
     def close(self):
         if traci.isLoaded():
             traci.close()
@@ -168,5 +151,5 @@ def run_simulation(sumo_cmd, total_steps, print_interval):
 if __name__ == "__main__":
     # Set the SUMO command to use SUMO-gui (for visualization)
     # Ensure that "fourway_intersection.sumocfg" exists in your working directory.
-    sumo_cmd = ["sumo-gui", "-c", "intersection/simple_intersection.sumocfg"]
+    sumo_cmd = ["sumo-gui", "-c", "one_intersection/simple_intersection.sumocfg"]
     run_simulation(sumo_cmd, total_steps=1000, print_interval=50)

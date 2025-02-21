@@ -29,7 +29,7 @@ class Visualization:
 
         # Save plot
         timestamp = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-        save_path =  f"{filename}_{timestamp}.jpg"
+        save_path =  f"plots/{filename}_{timestamp}.jpg"
         plt.savefig(save_path)
 
         plt.show()  # Show the plot

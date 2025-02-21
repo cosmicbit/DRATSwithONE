@@ -3,12 +3,12 @@ import numpy as np
 import torch
 from sumoenv import SUMOTrafficEnv
 from agent import  DQNAgent  # Import classes from your training module
-import matplotlib.pyplot as plt
+
 import ttl
 from visualization import Visualization
 
 
-def test_agent(sumo_cmd, episodes=1,print_interval=50):
+def test_agent(sumo_cmd, episodes):
     """
     Runs the trained agent for a given number of episodes in the SUMO simulation,
     using SUMO-gui so you can visually inspect the simulation.
@@ -55,7 +55,7 @@ def test_agent(sumo_cmd, episodes=1,print_interval=50):
 
 if __name__ == "__main__":
     # Define the SUMO command in GUI mode (adjust the config file name if needed)
-    sumo_cmd = ["sumo-gui", "-c", "intersection/simple_intersection.sumocfg"]
+    sumo_cmd = ["sumo-gui", "-c", "one_intersection/simple_intersection.sumocfg"]
 
 
     # Run one or more test episodes
