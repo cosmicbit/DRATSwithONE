@@ -1,9 +1,6 @@
 import os
 import sys
-import traci
 import datetime
-from cgi import print_form
-from gym import spaces
 import torch
 
 from agent import DQNAgent
@@ -43,7 +40,7 @@ def train_dqn(sumo_cmd, episodes, batch_size, target_update_freq=10):
             #print("Selected Action", action_tuple)
             # Flatten the action tuple for storage/training.
             # flat_action = agent.flatten_action(action_tuple[0], action_tuple[1])
-            next_state, reward, done, _ = env.step(action)
+            next_state, reward, done, info = env.step(action)
 
             agent.store_transition((state, action, reward, next_state, float(done)))
             state = next_state
@@ -71,11 +68,11 @@ if __name__ == "__main__":
     trained_agent, rewards = train_dqn(sumo_cmd, episodes=500, batch_size=64)
 
     # Save the trained model parameters
-    torch.save(trained_agent.q_network.state_dict(), "models/dqn_fourway_model.pth")
+    save_path=f"models/dqn_fourway_model.pth"
+    torch.save(trained_agent.q_network.state_dict(), save_path)
     print("Model saved.")
     # Visualization code (from your visualization module)
     viz = Visualization()
-    viz.save_data_and_plot(data=rewards, filename='Training Rewards',
-                           xlabel='Episode', ylabel='Total Reward')
+    viz.save_data_and_plot(data=rewards, filename='Training Rewards', xlabel='Episode', ylabel='Total Reward')
 
 

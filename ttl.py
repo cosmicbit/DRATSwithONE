@@ -1,12 +1,8 @@
 import os
 import sys
-import time
 import gym
 import numpy as np
-import random
 from gym import spaces
-import matplotlib.pyplot as plt
-
 import save_data
 from visualization import Visualization
 
